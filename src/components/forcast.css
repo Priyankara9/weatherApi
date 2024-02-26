@@ -1,0 +1,11 @@
+.size {
+    width: 100px ;
+    height: 75px;
+}
+.bg-color{
+    background-color: rgba(88, 85, 85, 0.4);
+}
+.box-size{
+    width: 200px ;
+    height: 200px;
+}

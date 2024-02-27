@@ -1,0 +1,17 @@
+{/* <div className='row mb-3 '>
+            <div className='d-flex justify-content-around align-items-center  '>
+              <div><Forcast day={daysOfWeek[0]} img={imgs[0]} temparature="25" ></Forcast></div>
+              <div><Forcast day={daysOfWeek[1]} img={imgs[2]} temparature="25"></Forcast></div>
+            
+              <div><Forcast day={daysOfWeek[2]} img={imgs[1]} temparature="25" ></Forcast></div>            
+            </div>
+          </div>
+
+          <div className='row mt-3'>
+            <div className='d-flex justify-content-around align-items-center  '>
+              <div><Forcast day={daysOfWeek[4]} img={imgs[1]} temparature="25" ></Forcast></div>
+              <div><Forcast day={daysOfWeek[5]} img={imgs[2]} temparature="25"></Forcast></div>
+            
+              <div><Forcast day={daysOfWeek[6]} img={imgs[0]} temparature="25" ></Forcast></div>            
+            </div>
+          </div> */}

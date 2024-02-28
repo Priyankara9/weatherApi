@@ -11,27 +11,28 @@ import sunnyBg from './assets/sunny-bg.jpg'
 function App() {
   const currentDate=new Date();
   const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const [day, setDay] = useState(daysOfWeek[currentDate.getDay()]);
-  const imgs=[cloudy,sunny,rainy];
-  const [img,setImg]=useState(imgs[0]);
+  const [currentTime,setCurrentTime]=useState(currentDate);
+  
+  const [forcast,setForcast]=useState(null);
   const [data,setData]=useState(null);
-  const [currentTime, setCurrentTime] = useState(new Date());
+  
   useEffect(() => {     
         const fetchData = async () => {
           try {
-            const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2cc1f2b7645a443298131959242502&q=walasmulla&days=7&aqi=no&alerts=no`);
+            const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2cc1f2b7645a443298131959242502&q=walasmulla&days=6&aqi=no&alerts=no`);
             if (!response.ok) {
               throw new Error("Network response not ok");
             }
             const data = await response.json();
             setData(data);
+            setForcast(data.forecast.forecastday);
           } catch (error) {
             console.error("Fetch error:", error);
           }
         };
         fetchData();
         const intervalId = setInterval(() => {
-          // Update the current time state variable every 10 second
+          // Update the current time state variable every 60 second
           setCurrentTime(new Date());
         }, 60000);
         return () => clearInterval(intervalId);
@@ -53,7 +54,7 @@ function App() {
 
              <div className='row d-flex justify-content-center align-items-center'>
                   <div className='col-5 mb-3'>
-                  <img src={imgs[0]} className="img-fluid size mx-auto d-block" alt="Weather Icon" />
+                  <img src={data.current.condition.icon} className="img-fluid size mx-auto d-block" alt="Weather Icon" />
                   </div>
                   <div className='col-7'><h3 className="text-center"><p>{data.current.temp_c} °C</p></h3></div>
                   <div className='col-12'><p id='city'>{data.location.name}</p></div>
@@ -74,19 +75,19 @@ function App() {
         </div >
         <div className='col-lg-8 col-md-7 col-sm-12 '>
           
-         <div className='row mb-3  '>
+        {forcast && (<div className='row mb-3  '>
             
-              <div className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'><div><Forcast day={daysOfWeek[0]} img={imgs[0]} temparature="25" ></Forcast></div></div>
-              <div className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'><div><Forcast day={daysOfWeek[1]} img={imgs[2]} temparature="21"></Forcast></div></div>
-            
-              <div className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'><div><Forcast day={daysOfWeek[2]} img={imgs[1]} temparature="25.7" ></Forcast></div></div>            
-
+              {forcast.map((item,index)=>(<div key ={index} className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'>
+                <div><Forcast 
+                    day={daysOfWeek[new Date(item.date).getDay()]} 
+                    img={item.day.condition.icon} 
+                    temparature={item.day.avgtemp_c} >
+                    </Forcast>
+                </div>
+              </div>))}
+              
                    
-              <div className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'><Forcast day={daysOfWeek[4]} img={imgs[1]} temparature="26.4" ></Forcast></div>
-              <div className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'><Forcast day={daysOfWeek[5]} img={imgs[2]} temparature="27"></Forcast></div>            
-              <div className='col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center'><Forcast day={daysOfWeek[6]} img={imgs[0]} temparature="23.2" ></Forcast></div>             
-                   
-          </div>
+          </div>)}
         </div>
       </div>
     </div>

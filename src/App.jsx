@@ -15,11 +15,12 @@ function App() {
   
   const [forcast,setForcast]=useState(null);
   const [data,setData]=useState(null);
-  
+  const [city,setCity]= useState(""); 
+  const [cityName,setCityName]=useState("colombo");
   useEffect(() => {     
         const fetchData = async () => {
           try {
-            const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=2cc1f2b7645a443298131959242502&q=walasmulla&days=6&aqi=no&alerts=no`);
+            const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2cc1f2b7645a443298131959242502&q=${cityName}&days=6&aqi=no&alerts=no`);
             if (!response.ok) {
               throw new Error("Network response not ok");
             }
@@ -42,8 +43,22 @@ function App() {
   return (
     <div className="container-fluid bg-img ">
       <div className="row height-row">
-        <div className='col-lg-9 col-md-7 colsm-12 mt-3'><h2 className="ms-auto">Weather Application</h2></div>
-        <div className='col-lg-2 col-md-4 col-sm-6 mt-3'><input type="search" placeholder='Search by City ' className='form-control'/></div>
+        <div className='col-lg-8 col-md-7 col-sm-12 mt-3'><h2 className="ms-auto">Weather Application</h2></div>
+        <div className='col-lg-3 col-md-4 col-sm-6 mt-3'>
+          <div className='row'>
+            <div className='col-lg-8 col-sm-9 me-0 '>
+            <input type="search" value={city} onChange={(event)=>{setCity(event.target.value)}} placeholder='Search by City ' 
+            className='form-control'/>
+            </div>
+            <div className='col-lg-3 col-sm-3 ms-0 ' >
+            <button className='btn btn-success  ' onClick={()=>{setCityName(city);}}>
+              Search
+            </button>
+            </div>
+          </div>
+          
+          
+        </div>
        
        
       </div>

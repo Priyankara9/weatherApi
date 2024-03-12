@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {     
         const fetchData = async () => {
           try {
-            const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2cc1f2b7645a443298131959242502&q=${cityName}&days=6&aqi=no&alerts=no`);
+            const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=2cc1f2b7645a443298131959242502&q=${cityName}&days=6&aqi=no&alerts=no`);
             if (!response.ok) {
               throw new Error("Network response not ok");
             }

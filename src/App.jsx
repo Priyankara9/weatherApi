@@ -43,18 +43,21 @@ function App() {
   return (
     <div className="container-fluid bg-img ">
       <div className="row height-row">
-        <div className='col-lg-8 col-md-7 col-sm-12 mt-3'><h2 className="ms-auto">Weather Application</h2></div>
-        <div className='col-lg-3 col-md-4 col-sm-6 mt-3'>
+        <div className='col-lg-9 col-md-7 col-sm-12 mt-3'><h2 className="ms-auto">Weather Application</h2></div>
+        <div className='col-lg-3 col-md-4 col-sm-12 mt-3'>
           <div className='row'>
-            <div className='col-lg-8 col-sm-9 me-0 '>
-            <input type="search" value={city} onChange={(event)=>{setCity(event.target.value)}} placeholder='City' 
-            className='form-control'/>
-            </div>
-            <div className='col-lg-3 col-sm-3 ms-0 ' >
-            <button className='btn btn-success  ' onClick={()=>{setCityName(city);}}>
-              Search
-            </button>
-            </div>
+            <div className='d-flex justify-content-center  align-items-center'>
+                <div className='col-lg-8 col-md-8 col-sm-10  mt-2 me-2  '>
+                  <input type="search" value={city} onChange={(event)=>{setCity(event.target.value)}} placeholder='City' 
+                  className='form-control'/>
+                </div>
+                <div className='col-lg-4 col-md-4 col-sm-2 mt-2 ' >
+                  <button className='btn btn-success  ' onClick={()=>{setCityName(city);}}>
+                    Search
+                  </button>
+                </div>
+            </div> 
+            
           </div>
           
           
@@ -62,7 +65,7 @@ function App() {
        
        
       </div>
-      <div className="row mt-3">
+      <div className="row mt-4 ">
         <div className='col-lg-4 col-md-5 col-sm-12 mb-4'>
         {data && (<div className='container text-center d-flex justify-content-center align-items-center'>
             <div className=' current-Size bg-color'>

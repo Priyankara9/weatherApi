@@ -47,7 +47,7 @@ function App() {
         <div className='col-lg-3 col-md-4 col-sm-6 mt-3'>
           <div className='row'>
             <div className='col-lg-8 col-sm-9 me-0 '>
-            <input type="search" value={city} onChange={(event)=>{setCity(event.target.value)}} placeholder='Search by City ' 
+            <input type="search" value={city} onChange={(event)=>{setCity(event.target.value)}} placeholder='City' 
             className='form-control'/>
             </div>
             <div className='col-lg-3 col-sm-3 ms-0 ' >
